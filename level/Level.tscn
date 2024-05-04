@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://5yk6wpkknphw"]
+
+[ext_resource type="Script" path="res://level/Level.gd" id="1_3cb36"]
+[ext_resource type="PackedScene" uid="uid://bxh4cr77j3u0y" path="res://player/Player.tscn" id="1_puo43"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8xjem"]
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jj7gj"]
+size = Vector3(100, 0.1, 100)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qdxrt"]
+height = 50.0
+radius = 5.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_uuhgk"]
+top_radius = 5.0
+bottom_radius = 5.0
+height = 50.0
+
+[sub_resource type="GDScript" id="GDScript_m4agi"]
+script/source = "extends Camera3D
+
+
+
+"
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r8c8o"]
+
+[sub_resource type="Sky" id="Sky_pbcec"]
+sky_material = SubResource("ProceduralSkyMaterial_r8c8o")
+
+[sub_resource type="Environment" id="Environment_6i61g"]
+background_mode = 2
+sky = SubResource("Sky_pbcec")
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_3cb36")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_8xjem")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_jj7gj")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 10, -3, 0)
+shape = SubResource("CylinderShape3D_qdxrt")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 10, -3, 0)
+mesh = SubResource("CylinderMesh_uuhgk")
+
+[node name="Player" parent="." instance=ExtResource("1_puo43")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.04941, -5)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+script = SubResource("GDScript_m4agi")
+
+[node name="Top" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Top"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Top"]
+environment = SubResource("Environment_6i61g")

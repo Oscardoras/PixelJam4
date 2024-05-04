@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxh4cr77j3u0y"]
+
+[ext_resource type="Script" path="res://CustomBody.gd" id="1_or08w"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mhdbc"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_xxanb"]
+
+[node name="Player" type="RigidBody3D"]
+mass = 10.0
+script = ExtResource("1_or08w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_mhdbc")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot"]
+mesh = SubResource("SphereMesh_xxanb")
