@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://61l1qqqbobcn" path="res://icon.svg" id="1_xnotr"]
 
 [node name="Window" type="Window"]
-transient = true
 unresizable = true
 borderless = true
 always_on_top = true
@@ -13,3 +12,5 @@ script = ExtResource("1_8vlb5")
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(50, 50)
 texture = ExtResource("1_xnotr")
+
+[connection signal="window_input" from="." to="." method="_on_input_event"]
