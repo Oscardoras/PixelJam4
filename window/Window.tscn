@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxb8pigvjr4cn"]
+
+[ext_resource type="Script" path="res://window/Window.gd" id="1_8vlb5"]
+[ext_resource type="Texture2D" uid="uid://61l1qqqbobcn" path="res://icon.svg" id="1_xnotr"]
+
+[node name="Window" type="Window"]
+transient = true
+unresizable = true
+borderless = true
+always_on_top = true
+script = ExtResource("1_8vlb5")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(50, 50)
+texture = ExtResource("1_xnotr")
